@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>NextSharp | Digital Craftsmanship</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#00D1FF",
+                        "on-tertiary-container": "#001851",
+                        "inverse-on-surface": "#535559",
+                        "inverse-surface": "#f8f9fe",
+                        "surface-bright": "#282c32",
+                        "on-surface-variant": "#a9abb0",
+                        "on-secondary": "#25006b",
+                        "surface-dim": "#0c0e12",
+                        "on-primary": "#004a5d",
+                        "surface-container-lowest": "#000000",
+                        "surface-container": "#171a1e",
+                        "surface": "#0c0e12",
+                        "on-secondary-fixed-variant": "#591bdc",
+                        "secondary-fixed-dim": "#cabaff",
+                        "error-container": "#9f0519",
+                        "tertiary-fixed-dim": "#819fff",
+                        "primary-container": "#00D1FF",
+                        "on-secondary-container": "#e4daff",
+                        "primary": "#00D1FF",
+                        "primary-fixed": "#00D1FF",
+                        "error-dim": "#d7383b",
+                        "on-error-container": "#ffa8a3",
+                        "surface-container-low": "#111417",
+                        "on-primary-container": "#004050",
+                        "on-primary-fixed-variant": "#004a5c",
+                        "surface-container-highest": "#22262b",
+                        "secondary-container": "#591adc",
+                        "on-tertiary-fixed-variant": "#00318e",
+                        "tertiary": "#89a5ff",
+                        "secondary-dim": "#7e51ff",
+                        "secondary-fixed": "#d8caff",
+                        "on-error": "#490006",
+                        "outline-variant": "#46484c",
+                        "on-tertiary-fixed": "#001345",
+                        "on-surface": "#f8f9fe",
+                        "secondary": "#a68cff",
+                        "primary-fixed-dim": "#00D1FF",
+                        "tertiary-fixed": "#95adff",
+                        "inverse-primary": "#006880",
+                        "background": "#0c0e12",
+                        "tertiary-container": "#7696fd",
+                        "surface-container-high": "#1c2025",
+                        "error": "#ff716c",
+                        "on-secondary-fixed": "#3b00a0",
+                        "primary-dim": "#00D1FF",
+                        "on-background": "#f8f9fe",
+                        "outline": "#73757a",
+                        "on-tertiary": "#00236d",
+                        "surface-variant": "#22262b",
+                        "tertiary-dim": "#7999ff",
+                        "on-primary-fixed": "#002a35"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "display": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0c0e12;
+            color: #f8f9fe;
+            scroll-behavior: smooth;
+        }
+
+        .font-headline {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-card {
+            background: rgba(23, 26, 30, 0.6);
+            backdrop-filter: blur(20px);
+        }
+
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
+        }
+
+        .ghost-border {
+            border: 1px solid rgba(115, 117, 122, 0.15);
+        }
+
+        .nav-active {
+            color: #00D1FF !important;
+            border-bottom: 2px solid #00D1FF;
+            padding-bottom: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body class="selection:bg-primary selection:text-on-primary overflow-x-hidden">
+    <!-- TopNavBar -->
+    <header class="fixed top-0 w-full z-50 bg-[#0c0e12]/80 backdrop-blur-xl border-b border-white/5">
+        <div class="flex justify-between items-center px-6 md:px-8 py-4 max-w-7xl mx-auto font-headline tracking-tight">
+            <div class="text-2xl font-bold tracking-tighter text-primary cursor-pointer"
+                onclick="window.scrollTo({top:0, behavior:'smooth'})">NextSharp</div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="nav-link text-primary font-semibold border-b-2 border-primary pb-1 transition-all duration-300 ease-out"
+                    href="#processo" data-i18n="nav_process">Processo</a>
+                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors" href="#servicos"
+                    data-i18n="nav_services">Serviços</a>
+                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors" href="#portfolio"
+                    data-i18n="nav_portfolio">Portfólio</a>
+                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors" href="#sobre"
+                    data-i18n="nav_about">Sobre Nós</a>
+                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors" href="#contato"
+                    data-i18n="nav_contact">Contato</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <!-- Dropdown de Idiomas -->
+                <div class="relative inline-block text-left" id="lang-selector-container">
+                    <button id="lang-btn"
+                        class="flex items-center gap-1.5 px-3 py-2 bg-surface-container/50 hover:bg-surface-container hover:border-primary/50 text-sm font-semibold rounded-lg border border-white/10 transition-all text-white">
+                        <span class="material-symbols-outlined text-lg">language</span>
+                        <img id="current-lang-flag" src="https://flagcdn.com/w20/br.png" class="w-5 h-auto rounded-sm"
+                            alt="PT">
+                        <span id="current-lang-text">PT</span>
+                        <span class="material-symbols-outlined text-sm transition-transform duration-200"
+                            id="lang-arrow" style="display:inline-block">keyboard_arrow_down</span>
+                    </button>
+                    <div id="lang-dropdown"
+                        class="absolute right-0 mt-2 w-32 bg-surface-container border border-white/10 rounded-xl overflow-hidden shadow-2xl opacity-0 scale-95 pointer-events-none transition-all duration-200 z-50">
+                        <button onclick="changeLanguage('pt')"
+                            class="w-full text-left px-4 py-2.5 hover:bg-primary/10 hover:text-primary transition-colors text-sm font-medium flex items-center gap-2 text-white">
+                            <img src="https://flagcdn.com/w20/br.png" class="w-5 h-auto rounded-sm" alt="PT"> PT
+                        </button>
+                        <button onclick="changeLanguage('en')"
+                            class="w-full text-left px-4 py-2.5 hover:bg-primary/10 hover:text-primary transition-colors text-sm font-medium flex items-center gap-2 text-white">
+                            <img src="https://flagcdn.com/w20/us.png" class="w-5 h-auto rounded-sm" alt="EN"> EN
+                        </button>
+                        <button onclick="changeLanguage('es')"
+                            class="w-full text-left px-4 py-2.5 hover:bg-primary/10 hover:text-primary transition-colors text-sm font-medium flex items-center gap-2 text-white">
+                            <img src="https://flagcdn.com/w20/es.png" class="w-5 h-auto rounded-sm" alt="ES"> ES
+                        </button>
+                        <button onclick="changeLanguage('fr')"
+                            class="w-full text-left px-4 py-2.5 hover:bg-primary/10 hover:text-primary transition-colors text-sm font-medium flex items-center gap-2 text-white">
+                            <img src="https://flagcdn.com/w20/fr.png" class="w-5 h-auto rounded-sm" alt="FR"> FR
+                        </button>
+                    </div>
+                </div>
+
+                <a href="https://wa.me/554191521235?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20projeto%20com%20a%20NextSharp."
+                    target="_blank"
+                    class="bg-primary text-on-primary px-5 py-2 rounded-lg font-bold hover:shadow-[0_0_15px_rgba(0,209,255,0.4)] hover:scale-105 transition-all text-sm hidden sm:inline-block"
+                    data-i18n="btn_quote">
+                    Solicitar Orçamento
+                </a>
+                <button id="mobile-menu-btn"
+                    class="md:hidden text-on-surface hover:text-primary transition-colors p-1 flex items-center justify-center"
+                    aria-label="Abrir Menu">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer Overlay -->
+    <div id="mobile-menu-drawer"
+        class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none">
+        <!-- Drawer Panel -->
+        <div id="mobile-menu-panel"
+            class="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-surface-container border-l border-white/10 p-8 shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-out">
+            <div>
+                <div class="flex justify-between items-center mb-8">
+                    <div class="text-2xl font-bold tracking-tighter text-primary">NextSharp</div>
+                    <button id="mobile-menu-close" class="text-on-surface hover:text-primary transition-colors p-1"
+                        aria-label="Fechar Menu">
+                        <span class="material-symbols-outlined text-3xl">close</span>
+                    </button>
+                </div>
+                <nav class="flex flex-col gap-6 text-lg font-headline font-semibold">
+                    <a class="mobile-nav-link text-primary border-l-2 border-primary pl-4 py-1.5 transition-all duration-300"
+                        href="#processo" data-i18n="nav_process">Processo</a>
+                    <a class="mobile-nav-link text-on-surface-variant hover:text-primary hover:border-l-2 hover:border-primary pl-4 py-1.5 transition-all duration-300"
+                        href="#servicos" data-i18n="nav_services">Serviços</a>
+                    <a class="mobile-nav-link text-on-surface-variant hover:text-primary hover:border-l-2 hover:border-primary pl-4 py-1.5 transition-all duration-300"
+                        href="#portfolio" data-i18n="nav_portfolio">Portfólio</a>
+                    <a class="mobile-nav-link text-on-surface-variant hover:text-primary hover:border-l-2 hover:border-primary pl-4 py-1.5 transition-all duration-300"
+                        href="#sobre" data-i18n="nav_about">Sobre Nós</a>
+                    <a class="mobile-nav-link text-on-surface-variant hover:text-primary hover:border-l-2 hover:border-primary pl-4 py-1.5 transition-all duration-300"
+                        href="#contato" data-i18n="nav_contact">Contato</a>
+                </nav>
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <span class="text-xs font-bold text-on-surface-variant tracking-wider block mb-3"
+                        data-i18n="mobile_lang_label">IDIOMA</span>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="changeLanguage('pt')"
+                            class="lang-btn-mobile px-3 py-2 bg-surface-container-high border border-white/5 rounded-lg text-sm font-semibold flex items-center gap-1.5 justify-center transition-all text-white"
+                            id="lang-btn-mobile-pt">
+                            <img src="https://flagcdn.com/w20/br.png" class="w-4 h-auto rounded-sm" alt="PT"> PT
+                        </button>
+                        <button onclick="changeLanguage('en')"
+                            class="lang-btn-mobile px-3 py-2 bg-surface-container-high border border-white/5 rounded-lg text-sm font-semibold flex items-center gap-1.5 justify-center transition-all text-white"
+                            id="lang-btn-mobile-en">
+                            <img src="https://flagcdn.com/w20/us.png" class="w-4 h-auto rounded-sm" alt="EN"> EN
+                        </button>
+                        <button onclick="changeLanguage('es')"
+                            class="lang-btn-mobile px-3 py-2 bg-surface-container-high border border-white/5 rounded-lg text-sm font-semibold flex items-center gap-1.5 justify-center transition-all text-white"
+                            id="lang-btn-mobile-es">
+                            <img src="https://flagcdn.com/w20/es.png" class="w-4 h-auto rounded-sm" alt="ES"> ES
+                        </button>
+                        <button onclick="changeLanguage('fr')"
+                            class="lang-btn-mobile px-3 py-2 bg-surface-container-high border border-white/5 rounded-lg text-sm font-semibold flex items-center gap-1.5 justify-center transition-all text-white"
+                            id="lang-btn-mobile-fr">
+                            <img src="https://flagcdn.com/w20/fr.png" class="w-4 h-auto rounded-sm" alt="FR"> FR
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <a href="https://wa.me/554191521235?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20projeto%20com%20a%20NextSharp."
+                target="_blank"
+                class="bg-primary text-on-primary text-center w-full py-3.5 rounded-xl font-bold hover:shadow-[0_0_15px_rgba(0,209,255,0.4)] transition-all mt-8"
+                data-i18n="btn_quote">
+                Solicitar Orçamento
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Video Background Container -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black/70 z-10"></div>
+            <video autoplay class="w-full h-full object-cover grayscale opacity-30" loop muted playsinline>
+                <source
+                    src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-blue-data-points-moving-in-a-grid-34531-large.mp4"
+                    type="video/mp4" />
+            </video>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 md:px-8 grid lg:grid-cols-2 gap-12 items-center relative z-25 py-16">
+            <div class="drop-shadow-2xl">
+                <span class="text-primary font-bold tracking-widest text-sm uppercase mb-4 block"
+                    data-i18n="hero_subtitle">Architecting the
+                    Future</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold font-headline leading-[1.1] tracking-tighter text-on-surface mb-6"
+                    data-i18n="hero_title">
+                    NextSharp: Transformamos desafios em <span class="text-primary">soluções digitais</span> sob medida.
+                </h1>
+                <p class="text-lg text-on-surface-variant mb-10 max-w-xl leading-relaxed" data-i18n="hero_desc">
+                    Desenvolvemos sistemas personalizados de alta escalabilidade para elevar sua presença digital ao
+                    próximo nível através de tecnologia de ponta e arquitetura de software resiliente.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="https://wa.me/554191521235?text=Ol%C3%A1!%20Gostaria%20de%20iniciar%20um%20projeto%20com%20a%20NextSharp."
+                        target="_blank"
+                        class="bg-primary text-on-primary px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform flex items-center justify-center"
+                        data-i18n="btn_start_project">
+                        Iniciar Projeto
+                    </a>
+                    <a href="#portfolio"
+                        class="ghost-border bg-surface-container-high/40 backdrop-blur px-8 py-4 rounded-xl font-bold text-lg text-on-surface hover:bg-surface-container-highest transition-colors flex items-center justify-center"
+                        data-i18n="btn_view_portfolio">
+                        Ver Portfólio
+                    </a>
+                </div>
+            </div>
+            <div class="relative hidden lg:block">
+                <div class="absolute -inset-4 bg-primary/20 blur-[100px] rounded-full"></div>
+                <div
+                    class="relative rounded-2xl border border-outline-variant/30 shadow-2xl overflow-hidden aspect-video group">
+                    <video id="hero-video" class="w-full h-full object-cover" autoplay loop muted playsinline>
+                        <source src="herosectionvideo.mp4" type="video/mp4">
+                    </video>
+                    <!-- Mute/Unmute Overlay Button -->
+                    <button id="video-mute-btn"
+                        class="absolute bottom-4 right-4 bg-black/60 hover:bg-black/85 text-white rounded-full p-2.5 flex items-center justify-center transition-all z-20 border border-white/10"
+                        aria-label="Ativar som do vídeo">
+                        <span class="material-symbols-outlined text-lg">volume_off</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-24 bg-surface-container-low" id="processo">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface mb-4" data-i18n="process_title">
+                    Da Ideia ao Produto Final</h2>
+                <div class="h-1 w-24 bg-primary mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="glass-card p-8 rounded-xl ghost-border hover:border-primary/50 transition-colors group">
+                    <div
+                        class="w-14 h-14 bg-surface-container-highest rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                        <span class="material-symbols-outlined text-primary text-3xl">lightbulb</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-on-surface" data-i18n="process_step1_title">Alinhamento de
+                        ideias</h3>
+                    <p class="text-on-surface-variant leading-relaxed" data-i18n="process_step1_desc">Imersão completa
+                        no seu negócio para entender
+                        desafios, objetivos e o ecossistema digital pretendido.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="glass-card p-8 rounded-xl ghost-border hover:border-primary/50 transition-colors group">
+                    <div
+                        class="w-14 h-14 bg-surface-container-highest rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                        <span class="material-symbols-outlined text-primary text-3xl">fact_check</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-on-surface" data-i18n="process_step2_title">Validação</h3>
+                    <p class="text-on-surface-variant leading-relaxed" data-i18n="process_step2_desc">Criação de
+                        protótipos e provas de conceito (PoC)
+                        para garantir que a solução atenda às reais necessidades.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="glass-card p-8 rounded-xl ghost-border hover:border-primary/50 transition-colors group">
+                    <div
+                        class="w-14 h-14 bg-surface-container-highest rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                        <span class="material-symbols-outlined text-primary text-3xl">code</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-on-surface" data-i18n="process_step3_title">Desenvolvimento
+                    </h3>
+                    <p class="text-on-surface-variant leading-relaxed" data-i18n="process_step3_desc">Codificação limpa
+                        utilizando stacks modernas e
+                        práticas ágeis para entrega contínua de valor.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="glass-card p-8 rounded-xl ghost-border hover:border-primary/50 transition-colors group">
+                    <div
+                        class="w-14 h-14 bg-surface-container-highest rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                        <span class="material-symbols-outlined text-primary text-3xl">bug_report</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-on-surface" data-i18n="process_step4_title">Teste do Sistema
+                    </h3>
+                    <p class="text-on-surface-variant leading-relaxed" data-i18n="process_step4_desc">QA rigoroso com
+                        testes automatizados e de
+                        estresse para garantir estabilidade e performance.</p>
+                </div>
+                <!-- Step 5 -->
+                <div class="glass-card p-8 rounded-xl ghost-border hover:border-primary/50 transition-colors group">
+                    <div
+                        class="w-14 h-14 bg-surface-container-highest rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                        <span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-on-surface" data-i18n="process_step5_title">Entrega</h3>
+                    <p class="text-on-surface-variant leading-relaxed" data-i18n="process_step5_desc">Lançamento do
+                        produto no ambiente produtivo com
+                        total transparência e suporte inicial.</p>
+                </div>
+                <!-- Step 6 -->
+                <div class="glass-card p-8 rounded-xl ghost-border hover:border-primary/50 transition-colors group">
+                    <div
+                        class="w-14 h-14 bg-surface-container-highest rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                        <span class="material-symbols-outlined text-primary text-3xl">settings_suggest</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-on-surface" data-i18n="process_step6_title">Implementação
+                    </h3>
+                    <p class="text-on-surface-variant leading-relaxed" data-i18n="process_step6_desc">Treinamento,
+                        integração com sistemas legados e
+                        monitoramento pós-lançamento ativo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="py-24 bg-surface overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+                <div class="lg:col-span-4 flex flex-col justify-center">
+                    <h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface mb-6 leading-tight"
+                        data-i18n="why_title">Por que
+                        confiar na NextSharp?</h2>
+                    <p class="text-on-surface-variant mb-8 text-lg" data-i18n="why_desc">Unimos rigor técnico com uma
+                        visão estratégica de
+                        negócios para entregar mais que software: entregamos vantagem competitiva.</p>
+                </div>
+                <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div
+                        class="bg-surface-container-high p-8 rounded-2xl border border-outline-variant/20 hover:border-primary/40 transition-all">
+                        <span class="text-primary mb-4 block material-symbols-outlined text-4xl">architecture</span>
+                        <h4 class="text-xl font-bold mb-2" data-i18n="why_card1_title">Soluções sob medida</h4>
+                        <p class="text-on-surface-variant text-sm" data-i18n="why_card1_desc">Software desenhado para
+                            suas regras de negócio
+                            exclusivas.</p>
+                    </div>
+                    <div
+                        class="bg-surface-container-high p-8 rounded-2xl border border-outline-variant/20 hover:border-primary/40 transition-all">
+                        <span class="text-primary mb-4 block material-symbols-outlined text-4xl">handshake</span>
+                        <h4 class="text-xl font-bold mb-2" data-i18n="why_card2_title">Parceria de verdade</h4>
+                        <p class="text-on-surface-variant text-sm" data-i18n="why_card2_desc">Atuamos como um braço
+                            tecnológico da sua empresa.</p>
+                    </div>
+                    <div
+                        class="bg-surface-container-high p-8 rounded-2xl border border-outline-variant/20 hover:border-primary/40 transition-all">
+                        <span class="text-primary mb-4 block material-symbols-outlined text-4xl">verified</span>
+                        <h4 class="text-xl font-bold mb-2" data-i18n="why_card3_title">Alta qualidade técnica</h4>
+                        <p class="text-on-surface-variant text-sm" data-i18n="why_card3_desc">Código limpo, seguro e
+                            preparado para o futuro.</p>
+                    </div>
+                    <div
+                        class="bg-surface-container-high p-8 rounded-2xl border border-outline-variant/20 hover:border-primary/40 transition-all">
+                        <span class="text-primary mb-4 block material-symbols-outlined text-4xl">bolt</span>
+                        <h4 class="text-xl font-bold mb-2" data-i18n="why_card4_title">Agilidade</h4>
+                        <p class="text-on-surface-variant text-sm" data-i18n="why_card4_desc">Metodologias ágeis para
+                            entregas rápidas e
+                            constantes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-24 bg-surface-container-low" id="servicos">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <h2 class="text-4xl font-headline font-bold text-on-surface mb-2" data-i18n="solutions_title">Nossas
+                        Soluções</h2>
+                    <p class="text-on-surface-variant" data-i18n="solutions_desc">Tecnologia especializada para cada
+                        etapa do seu crescimento.</p>
+                </div>
+                <div class="h-[1px] flex-grow mx-8 bg-outline-variant/30 hidden md:block"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Custom Systems -->
+                <div
+                    class="bg-surface-container rounded-2xl p-8 md:p-10 group hover:bg-surface-bright transition-all duration-300">
+                    <span class="material-symbols-outlined text-primary text-5xl mb-6 block">terminal</span>
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="solutions_card1_title">Sistemas personalizados</h3>
+                    <p class="text-on-surface-variant mb-6 leading-relaxed" data-i18n="solutions_card1_desc">ERPs, CRMs
+                        e plataformas internas
+                        desenvolvidas do zero para atender demandas específicas.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-bold">Custom
+                            Development</span>
+                    </div>
+                </div>
+                <!-- SaaS & Cloud -->
+                <div
+                    class="bg-surface-container rounded-2xl p-8 md:p-10 group hover:bg-surface-bright transition-all duration-300">
+                    <span class="material-symbols-outlined text-primary text-5xl mb-6 block">cloud_done</span>
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="solutions_card2_title">SaaS &amp; Cloud</h3>
+                    <p class="text-on-surface-variant mb-6 leading-relaxed" data-i18n="solutions_card2_desc">Criação de
+                        produtos digitais escaláveis na
+                        nuvem com infraestrutura resiliente.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-bold">Cloud-Native</span>
+                    </div>
+                </div>
+                <!-- Consultancy -->
+                <div
+                    class="bg-surface-container rounded-2xl p-8 md:p-10 group hover:bg-surface-bright transition-all duration-300">
+                    <span class="material-symbols-outlined text-primary text-5xl mb-6 block">query_stats</span>
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="solutions_card3_title">Consultoria</h3>
+                    <p class="text-on-surface-variant mb-6 leading-relaxed" data-i18n="solutions_card3_desc">Análise
+                        técnica profunda para modernização
+                        de sistemas legados e escolha de tecnologias.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-bold">Strategic
+                            Tech</span>
+                    </div>
+                </div>
+                <!-- Landing Pages -->
+                <div
+                    class="bg-surface-container rounded-2xl p-8 md:p-10 group hover:bg-surface-bright transition-all duration-300 lg:col-span-2">
+                    <div class="grid md:grid-cols-2 gap-8 items-center h-full">
+                        <div>
+                            <span class="material-symbols-outlined text-primary text-5xl mb-6 block">web</span>
+                            <h3 class="text-2xl font-bold mb-4" data-i18n="solutions_card4_title">Sites &amp; Landing
+                                Pages</h3>
+                            <p class="text-on-surface-variant leading-relaxed" data-i18n="solutions_card4_desc">Presença
+                                digital de alto impacto com foco
+                                em conversão e velocidade extrema.</p>
+                        </div>
+                        <div class="rounded-xl overflow-hidden border border-outline-variant/30">
+                            <img alt="NextSharp High-Performance Site Showcase"
+                                class="w-full h-48 object-cover hover:scale-105 transition-transform duration-500"
+                                src="Notbook.png" />
+                        </div>
+                    </div>
+                </div>
+                <!-- Different Need -->
+                <div
+                    class="bg-primary text-on-primary rounded-2xl p-8 md:p-10 flex flex-col justify-center items-start">
+                    <h3 class="text-2xl font-bold mb-4 text-[#001c3a]" data-i18n="solutions_need_title">Precisa de algo
+                        diferente?</h3>
+                    <p class="text-[#001c3a]/80 mb-8 font-medium" data-i18n="solutions_need_desc">Nossa equipe está
+                        pronta para arquitetar qualquer
+                        desafio digital.</p>
+                    <a href="https://wa.me/554191521235?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20com%20um%20consultor%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20NextSharp."
+                        target="_blank"
+                        class="bg-[#001c3a] text-[#00d1ff] px-6 py-3 rounded-xl font-bold hover:scale-105 transition-transform"
+                        data-i18n="solutions_need_btn">
+                        Conversar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio/Cases Section -->
+    <section class="py-24 bg-surface" id="portfolio">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <h2 class="text-4xl font-headline font-bold mb-16 text-center text-on-surface" data-i18n="portfolio_title">
+                Projetos de Impacto</h2>
+            <div class="space-y-24">
+                <!-- Case: NextSharp Stock -->
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1">
+                        <span class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block"
+                            data-i18n="portfolio_case1_tag">Gestão de
+                            Estoque</span>
+                        <h3 class="text-3xl font-bold mb-6 font-headline">NextSharp Stock</h3>
+                        <p class="text-on-surface-variant mb-6 leading-relaxed" data-i18n="portfolio_case1_desc">
+                            <strong class="text-on-surface">Desafio:</strong> Centralizar o controle de múltiplos
+                            armazéns com atualização em tempo real.<br />
+                            <strong class="text-on-surface">Solução:</strong> Painel administrativo robusto com
+                            dashboards inteligentes e integração de cotações.<br />
+                            <strong class="text-on-surface">Impacto:</strong> Otimização de 30% na velocidade de
+                            reposição e controle absoluto de ativos.
+                        </p>
+                        <button class="case-details-btn text-primary flex items-center gap-2 font-bold group"
+                            data-case-key="stock" data-title="NextSharp Stock" data-tag="Gestão de Estoque"
+                            data-image="pcnextsharp.png"
+                            data-desafio="Controlar e centralizar com precisão o fluxo de inventário, entradas, saídas, níveis críticos de reabastecimento e cotações financeiras em múltiplos depósitos."
+                            data-solucao="Desenvolvimento de uma plataforma integrada para gestão operacional, incluindo relatórios dinâmicos, alertas automatizados baseados em inteligência preditiva para estoque mínimo, painel de ordens de serviço e conciliação financeira automatizada."
+                            data-impacto="Redução imediata de 30% nos gargalos de suprimentos, eliminação completa de erros em cotações manuais e visibilidade operacional de 100% dos ativos em tempo real.">
+                            <span data-i18n="portfolio_case_details">Ver detalhes do case</span>
+                            <span
+                                class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </button>
+                    </div>
+                    <div
+                        class="order-1 lg:order-2 rounded-2xl overflow-hidden border border-outline-variant/30 bg-surface-container">
+                        <img alt="NextSharp Stock Platform Screenshot"
+                            class="w-full hover:scale-105 transition-transform duration-700 object-cover aspect-video"
+                            src="pcnextsharp.png" />
+                    </div>
+                </div>
+
+                <!-- Case: AutoConecta -->
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="rounded-2xl overflow-hidden border border-outline-variant/30 bg-surface-container">
+                        <img alt="AutoConecta Car Sales Platform Preview"
+                            class="w-full hover:scale-105 transition-transform duration-700 object-cover aspect-video"
+                            src="autoconecta.png" />
+                    </div>
+                    <div>
+                        <span class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block"
+                            data-i18n="portfolio_case2_tag">Automotivo</span>
+                        <h3 class="text-3xl font-bold mb-6 font-headline">AutoConecta</h3>
+                        <p class="text-on-surface-variant mb-6 leading-relaxed" data-i18n="portfolio_case2_desc">
+                            <strong class="text-on-surface">Desafio:</strong> Revolucionar a venda de veículos seminovos
+                            com transparência e tecnologia.<br />
+                            <strong class="text-on-surface">Solução:</strong> Marketplace de alta performance com
+                            filtros avançados e checkout integrado.<br />
+                            <strong class="text-on-surface">Impacto:</strong> Projeto em roadmap estratégico para
+                            lançamento iminente.
+                        </p>
+                        <button class="case-details-btn text-primary flex items-center gap-2 font-bold group"
+                            data-case-key="autoconecta" data-title="AutoConecta" data-tag="Automotivo"
+                            data-image="autoconecta.png"
+                            data-desafio="Revolucionar a venda de veículos seminovos com transparência e tecnologia."
+                            data-solucao="Marketplace de alta performance com filtros avançados e checkout integrado."
+                            data-impacto="Projeto em roadmap estratégico para lançamento iminente.">
+                            <span data-i18n="portfolio_case_details">Ver detalhes do case</span>
+                            <span
+                                class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Case: LegalTrack Enterprise -->
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1">
+                        <span class="text-primary font-bold tracking-widest text-xs uppercase mb-4 block"
+                            data-i18n="portfolio_case3_tag">Advocacia de
+                            Alta Performance</span>
+                        <h3 class="text-3xl font-bold mb-6 font-headline">LegalTrack Enterprise</h3>
+                        <p class="text-on-surface-variant mb-6 leading-relaxed" data-i18n="portfolio_case3_desc">
+                            <strong class="text-on-surface">Desafio:</strong> Automatizar o acompanhamento de processos
+                            judiciais em diferentes tribunais brasileiros.<br />
+                            <strong class="text-on-surface">Solução:</strong> Crawler inteligente para extração de dados
+                            e workflow automatizado de peticionamento.<br />
+                            <strong class="text-on-surface">Impacto:</strong> Aumento de 40% na produtividade e
+                            segurança total de dados sensíveis.
+                        </p>
+                        <button class="case-details-btn text-primary flex items-center gap-2 font-bold group"
+                            data-case-key="legaltrack" data-title="LegalTrack Enterprise"
+                            data-tag="Advocacia de Alta Performance"
+                            data-image="https://lh3.googleusercontent.com/aida-public/AB6AXuAo1KMmSOenH_HSn5Y8jRf7yTeonnwvau5x23aSCJVqb44eSTRyU6aSIACOUwP1VEXmPtK70bCzFSlPabX8WU4VVrWuh_VHR-hHko3WEe9VAd44OboSsRKXWh-ZyWKSC5R0Epx7uwihY5qCebIwuCBzzgU1_9Vk3TbPsI8Q_Hastph05cdgZ6ygjNkLS5TbCDFBIRwR2xeR5d6qqY6TOmz4T4CPgOUBX-zUF7R-tYK6Ry81oMkiuNf_jdCwjlaAQFqeF6_BkTDsSw"
+                            data-desafio="Mapear diariamente centenas de diários oficiais e plataformas de tribunais de justiça para rastrear atualizações em processos ativos, evitando perda de prazos cruciais."
+                            data-solucao="Criação de um robô/crawler inteligente rodando de forma distribuída para monitoramento de instâncias jurídicas, integrado com processamento de linguagem natural (PLN) para analisar decisões e gerar rascunhos de petições."
+                            data-impacto="Produtividade jurídica elevada em 40%, eliminação completa da perda de prazos de trânsito em julgado e máxima confidencialidade no tratamento de informações de processos judiciais sigilosos.">
+                            <span data-i18n="portfolio_case_details">Ver detalhes do case</span>
+                            <span
+                                class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </button>
+                    </div>
+                    <div
+                        class="order-1 lg:order-2 rounded-2xl overflow-hidden border border-outline-variant/30 bg-surface-container">
+                        <img alt="LegalTrack Enterprise Login Portal"
+                            class="w-full hover:scale-105 transition-transform duration-700 object-cover aspect-video"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo1KMmSOenH_HSn5Y8jRf7yTeonnwvau5x23aSCJVqb44eSTRyU6aSIACOUwP1VEXmPtK70bCzFSlPabX8WU4VVrWuh_VHR-hHko3WEe9VAd44OboSsRKXWh-ZyWKSC5R0Epx7uwihY5qCebIwuCBzzgU1_9Vk3TbPsI8Q_Hastph05cdgZ6ygjNkLS5TbCDFBIRwR2xeR5d6qqY6TOmz4T4CPgOUBX-zUF7R-tYK6Ry81oMkiuNf_jdCwjlaAQFqeF6_BkTDsSw" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Details Modal -->
+    <div id="case-modal"
+        class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div id="case-modal-panel"
+            class="bg-surface-container border border-outline-variant/30 rounded-3xl w-full max-w-4xl overflow-hidden shadow-2xl transform scale-95 transition-all duration-300 ease-out flex flex-col md:flex-row max-h-[90vh] relative">
+            <button id="modal-close"
+                class="absolute top-4 right-4 text-on-surface-variant hover:text-primary transition-colors p-2 z-30 bg-black/40 rounded-full flex items-center justify-center border border-white/10"
+                aria-label="Fechar modal">
+                <span class="material-symbols-outlined text-2xl">close</span>
+            </button>
+            <!-- Left Side: Image -->
+            <div class="md:w-1/2 bg-black relative min-h-[200px] md:min-h-[400px]">
+                <img id="modal-image" src="" alt="" class="w-full h-full object-cover absolute inset-0">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 right-6">
+                    <span id="modal-tag"
+                        class="px-3 py-1 bg-primary/20 text-primary text-xs rounded-full font-bold uppercase tracking-wider"></span>
+                    <h3 id="modal-title"
+                        class="text-2xl md:text-3xl font-bold font-headline mt-2 text-white leading-tight"></h3>
+                </div>
+            </div>
+            <!-- Right Side: Details -->
+            <div class="md:w-1/2 p-6 md:p-10 overflow-y-auto flex flex-col justify-between max-h-[50vh] md:max-h-none">
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-xs font-bold text-primary uppercase tracking-widest mb-1"
+                            data-i18n="modal_challenge_header">O Desafio</h4>
+                        <p id="modal-desafio" class="text-on-surface-variant leading-relaxed text-sm"></p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-primary uppercase tracking-widest mb-1"
+                            data-i18n="modal_solution_header">A Solução</h4>
+                        <p id="modal-solucao" class="text-on-surface-variant leading-relaxed text-sm"></p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-primary uppercase tracking-widest mb-1"
+                            data-i18n="modal_impact_header">O Impacto</h4>
+                        <p id="modal-impacto" class="text-on-surface-variant leading-relaxed text-sm"></p>
+                    </div>
+                </div>
+                <div class="pt-6 border-t border-outline-variant/10 mt-8 flex justify-end">
+                    <a href="https://wa.me/554191521235?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20especialista%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20NextSharp."
+                        target="_blank" id="modal-action-btn"
+                        class="bg-primary text-on-primary px-6 py-3 rounded-xl font-bold hover:shadow-[0_0_15px_rgba(0,209,255,0.4)] hover:scale-105 transition-all text-sm text-center"
+                        data-i18n="modal_action_btn">
+                        Falar com Especialista
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DNA Section -->
+    <section class="py-24 bg-surface-container-low border-t border-white/5" id="sobre">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-headline font-bold text-on-surface mb-4" data-i18n="dna_title">Nosso DNA</h2>
+                <p class="text-on-surface-variant max-w-2xl mx-auto" data-i18n="dna_desc">Mais que desenvolvedores,
+                    somos arquitetos de
+                    soluções focadas em resultados reais.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Mission -->
+                <div class="p-8 bg-surface-container rounded-2xl border border-white/5">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary">ads_click</span>
+                        <span data-i18n="dna_mission">Missão</span>
+                    </h3>
+                    <p class="text-on-surface-variant leading-relaxed" data-i18n="dna_mission_desc">Capacitar empresas a
+                        atingirem seu potencial
+                        máximo através de tecnologia inovadora, escalável e de alta qualidade técnica.</p>
+                </div>
+                <!-- Vision -->
+                <div class="p-8 bg-surface-container rounded-2xl border border-white/5">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary">visibility</span>
+                        <span data-i18n="dna_vision">Visão</span>
+                    </h3>
+                    <p class="text-on-surface-variant leading-relaxed" data-i18n="dna_vision_desc">Ser referência global
+                        em desenvolvimento de
+                        software customizado, reconhecida pela excelência em arquitetura.</p>
+                </div>
+                <!-- Values -->
+                <div class="p-8 bg-surface-container rounded-2xl border border-white/5">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary">diamond</span>
+                        <span data-i18n="dna_values">Valores</span>
+                    </h3>
+                    <ul class="space-y-2 text-on-surface-variant">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                            <span data-i18n="dna_values_1">Transparência Radical</span>
+                        </li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                            <span data-i18n="dna_values_2">Inovação Contínua</span>
+                        </li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                            <span data-i18n="dna_values_3">Foco em Resultados</span>
+                        </li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                            <span data-i18n="dna_values_4">Qualidade Inegociável</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-24 bg-surface relative overflow-hidden" id="contato">
+        <div class="absolute bottom-0 right-0 w-1/2 h-1/2 bg-primary/5 blur-[120px] rounded-full"></div>
+        <div class="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
+            <div
+                class="glass-card p-8 md:p-16 rounded-3xl border border-white/10 flex flex-col lg:flex-row gap-16 items-center">
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface mb-6"
+                        data-i18n="contact_title">Pronto para o próximo
+                        nível?</h2>
+                    <p class="text-on-surface-variant text-lg mb-8 leading-relaxed" data-i18n="contact_desc">
+                        Agende uma reunião estratégica com nossos especialistas e descubra como a NextSharp pode
+                        transformar seus desafios em ativos digitais de alto valor.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-primary">mail</span>
+                            <span class="text-on-surface">contato@nextsharp.com.br</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-primary">phone</span>
+                            <span class="text-on-surface">+55 (41) 9152-1235</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-primary">location_on</span>
+                            <span class="text-on-surface">Curitiba, PR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <form class="grid grid-cols-1 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-on-surface-variant tracking-wider"
+                                    data-i18n="contact_label_name">NOME</label>
+                                <input
+                                    class="w-full bg-surface-container-lowest border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none transition-all text-white focus:ring-1 focus:ring-primary"
+                                    placeholder="Seu nome" type="text" data-i18n-placeholder="contact_placeholder_name"
+                                    required />
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-on-surface-variant tracking-wider"
+                                    data-i18n="contact_label_email">E-MAIL</label>
+                                <input
+                                    class="w-full bg-surface-container-lowest border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none transition-all text-white focus:ring-1 focus:ring-primary"
+                                    placeholder="seu@email.com" type="email"
+                                    data-i18n-placeholder="contact_placeholder_email" required />
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-on-surface-variant tracking-wider"
+                                data-i18n="contact_label_message">MENSAGEM</label>
+                            <textarea
+                                class="w-full bg-surface-container-lowest border border-white/10 rounded-xl px-4 py-3 focus:border-primary outline-none transition-all text-white focus:ring-1 focus:ring-primary"
+                                placeholder="Como podemos ajudar?" data-i18n-placeholder="contact_placeholder_message"
+                                rows="4" required></textarea>
+                        </div>
+                        <button type="submit"
+                            class="bg-primary text-on-primary font-bold py-4 rounded-xl hover:shadow-[0_0_20px_rgba(0,209,255,0.4)] hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
+                            <span data-i18n="contact_btn_send">Enviar Mensagem</span>
+                            <span class="material-symbols-outlined text-lg">send</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 pointer-events-none flex flex-col gap-3"></div>
+
+    <!-- Footer -->
+    <footer class="w-full border-t border-white/5 bg-[#0c0e12]">
+        <div
+            class="flex flex-col md:flex-row justify-between items-center px-8 md:px-12 py-12 gap-8 max-w-7xl mx-auto font-body text-sm uppercase tracking-widest">
+            <div class="flex flex-col gap-2 text-center md:text-left">
+                <div class="text-lg font-bold text-white tracking-tighter">NextSharp</div>
+                <p class="text-on-surface-variant normal-case tracking-normal text-xs" data-i18n="footer_rights">© 2025
+                    NextSharp. Todos os
+                    direitos reservados.</p>
+            </div>
+            <!-- <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+                <a class="text-on-surface-variant hover:text-white transition-all text-xs" href="#">Privacidade</a>
+                <a class="text-on-surface-variant hover:text-white transition-all text-xs" href="#">Termos</a>
+                <a class="text-on-surface-variant hover:text-white transition-all text-xs" href="#">Trabalhe Conosco</a>
+            </div> -->
+            <!-- <div class="flex gap-4">
+                <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-all"
+                    href="#" aria-label="Website">
+                    <span class="material-symbols-outlined">language</span>
+                </a>
+                <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-all"
+                    href="#" aria-label="Terminal">
+                    <span class="material-symbols-outlined">terminal</span>
+                </a>
+            </div> -->
+        </div>
+    </footer>
+
+    <!-- Interactive Javascript Logic -->
+    <script>
+        // Mute/Unmute toggle for Hero Video
+        const heroVideo = document.getElementById('hero-video');
+        const videoMuteBtn = document.getElementById('video-mute-btn');
+
+        if (heroVideo && videoMuteBtn) {
+            videoMuteBtn.addEventListener('click', () => {
+                heroVideo.muted = !heroVideo.muted;
+                const icon = videoMuteBtn.querySelector('.material-symbols-outlined');
+                if (heroVideo.muted) {
+                    icon.textContent = 'volume_off';
+                    videoMuteBtn.setAttribute('aria-label', 'Ativar som do vídeo');
+                } else {
+                    icon.textContent = 'volume_up';
+                    videoMuteBtn.setAttribute('aria-label', 'Desmutar som do vídeo');
+                }
+            });
+        }
+
+        // Mobile Menu Drawer Control
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
+        const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function openMobileMenu() {
+            mobileMenuDrawer.classList.remove('opacity-0', 'pointer-events-none');
+            mobileMenuPanel.classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenuDrawer.classList.add('opacity-0', 'pointer-events-none');
+            mobileMenuPanel.classList.add('translate-x-full');
+            document.body.style.overflow = '';
+        }
+
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
+        if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMobileMenu);
+
+        if (mobileMenuDrawer) {
+            mobileMenuDrawer.addEventListener('click', (e) => {
+                if (e.target === mobileMenuDrawer) closeMobileMenu();
+            });
+        }
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Language Dropdown Control
+        const langBtn = document.getElementById('lang-btn');
+        const langDropdown = document.getElementById('lang-dropdown');
+        const langArrow = document.getElementById('lang-arrow');
+
+        if (langBtn && langDropdown) {
+            langBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = !langDropdown.classList.contains('opacity-0');
+                if (isOpen) {
+                    langDropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                    if (langArrow) langArrow.style.transform = 'rotate(0deg)';
+                } else {
+                    langDropdown.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+                    if (langArrow) langArrow.style.transform = 'rotate(180deg)';
+                }
+            });
+
+            document.addEventListener('click', () => {
+                langDropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                if (langArrow) langArrow.style.transform = 'rotate(0deg)';
+            });
+        }
+
+        // Translation Dictionary (PT, EN, ES, FR)
+        const translations = {
+            pt: {
+                nav_process: "Processo",
+                nav_services: "Serviços",
+                nav_portfolio: "Portfólio",
+                nav_about: "Sobre Nós",
+                nav_contact: "Contato",
+                btn_quote: "Solicitar Orçamento",
+                hero_subtitle: "Architecting the Future",
+                hero_title: 'NextSharp: Transformamos desafios em <span class="text-primary">soluções digitais</span> sob medida.',
+                hero_desc: "Desenvolvemos sistemas personalizados de alta escalabilidade para elevar sua presença digital ao próximo nível através de tecnologia de ponta e arquitetura de software resiliente.",
+                btn_start_project: "Iniciar Projeto",
+                btn_view_portfolio: "Ver Portfólio",
+                process_title: "Da Ideia ao Produto Final",
+                process_step1_title: "Alinhamento de ideias",
+                process_step1_desc: "Imersão completa no seu negócio para entender desafios, objetivos e o ecossistema digital pretendido.",
+                process_step2_title: "Validação",
+                process_step2_desc: "Criação de protótipos e provas de conceito (PoC) para garantir que a solução atenda às reais necessidades.",
+                process_step3_title: "Desenvolvimento",
+                process_step3_desc: "Codificação limpa utilizando stacks modernas e práticas ágeis para entrega contínua de valor.",
+                process_step4_title: "Teste do Sistema",
+                process_step4_desc: "QA rigoroso com testes automatizados e de estresse para garantir estabilidade e performance.",
+                process_step5_title: "Entrega",
+                process_step5_desc: "Lançamento do produto no ambiente produtivo com total transparência e suporte inicial.",
+                process_step6_title: "Implementação",
+                process_step6_desc: "Treinamento, integração com sistemas legados e monitoramento pós-lançamento ativo.",
+                why_title: "Por que confiar na NextSharp?",
+                why_desc: "Unimos rigor técnico com uma visão estratégica de negócios para entregar mais que software: entregamos vantagem competitiva.",
+                why_card1_title: "Soluções sob medida",
+                why_card1_desc: "Software desenhado para suas regras de negócio exclusivas.",
+                why_card2_title: "Parceria de verdade",
+                why_card2_desc: "Atuamos como um braço tecnológico da sua empresa.",
+                why_card3_title: "Alta qualidade técnica",
+                why_card3_desc: "Código limpo, seguro e preparado para o futuro.",
+                why_card4_title: "Agilidade",
+                why_card4_desc: "Metodologias ágeis para entregas rápidas e constantes.",
+                solutions_title: "Nossas Soluções",
+                solutions_desc: "Tecnologia especializada para cada etapa do seu crescimento.",
+                solutions_card1_title: "Sistemas personalizados",
+                solutions_card1_desc: "ERPs, CRMs e plataformas internas desenvolvidas do zero para atender demandas específicas.",
+                solutions_card2_title: "SaaS & Cloud",
+                solutions_card2_desc: "Criação de produtos digitais escaláveis na nuvem com infraestrutura resiliente.",
+                solutions_card3_title: "Consultoria",
+                solutions_card3_desc: "Análise técnica profunda para modernização de sistemas legados e escolha de tecnologias.",
+                solutions_card4_title: "Sites & Landing Pages",
+                solutions_card4_desc: "Presença digital de alto impacto com foco em conversão e velocidade extrema.",
+                solutions_need_title: "Precisa de algo diferente?",
+                solutions_need_desc: "Nossa equipe está pronta para arquitetar qualquer desafio digital.",
+                solutions_need_btn: "Conversar com Consultor",
+                portfolio_title: "Projetos de Impacto",
+                portfolio_case_details: "Ver detalhes do case",
+                portfolio_case1_tag: "Gestão de Estoque",
+                portfolio_case1_desc: '<strong class="text-on-surface">Desafio:</strong> Centralizar o controle de múltiplos armazéns com atualização em tempo real.<br /><strong class="text-on-surface">Solução:</strong> Painel administrativo robusto com dashboards inteligentes e integração de cotações.<br /><strong class="text-on-surface">Impacto:</strong> Otimização de 30% na velocidade de reposição e controle absoluto de ativos.',
+                portfolio_case2_tag: "Automotivo",
+                portfolio_case2_desc: '<strong class="text-on-surface">Desafio:</strong> Revolucionar a venda de veículos seminovos com transparência e tecnologia.<br /><strong class="text-on-surface">Solução:</strong> Marketplace de alta performance com filtros avançados e checkout integrado.<br /><strong class="text-on-surface">Impacto:</strong> Projeto em roadmap estratégico para lançamento iminente.',
+                portfolio_case3_tag: "Advocacia de Alta Performance",
+                portfolio_case3_desc: '<strong class="text-on-surface">Desafio:</strong> Automatizar o acompanhamento de processos judiciais em diferentes tribunais brasileiros.<br /><strong class="text-on-surface">Solução:</strong> Crawler inteligente para extração de dados e workflow automatizado de peticionamento.<br /><strong class="text-on-surface">Impacto:</strong> Aumento de 40% na produtividade e segurança total de dados sensíveis.',
+                dna_title: "Nosso DNA",
+                dna_desc: "Mais que desenvolvedores, somos arquitetos de soluções focadas em resultados reais.",
+                dna_mission: "Missão",
+                dna_mission_desc: "Capacitar empresas a atingirem seu potencial máximo através de tecnologia inovadora, escalável e de alta qualidade técnica.",
+                dna_vision: "Visão",
+                dna_vision_desc: "Ser referência global em desenvolvimento de software customizado, reconhecida pela excelência em arquitetura.",
+                dna_values: "Valores",
+                dna_values_1: "Transparência Radical",
+                dna_values_2: "Inovação Contínua",
+                dna_values_3: "Foco em Resultados",
+                dna_values_4: "Qualidade Inegociável",
+                contact_title: "Pronto para o próximo nível?",
+                contact_desc: "Agende uma reunião estratégica com nossos especialistas e descubra como a NextSharp pode transformar seus desafios em ativos digitais de alto valor.",
+                contact_label_name: "NOME",
+                contact_label_email: "E-MAIL",
+                contact_label_message: "MENSAGEM",
+                contact_placeholder_name: "Seu nome",
+                contact_placeholder_email: "seu@email.com",
+                contact_placeholder_message: "Como podemos ajudar?",
+                contact_btn_send: "Enviar Mensagem",
+                footer_rights: "© 2025 NextSharp. Todos os direitos reservados.",
+                modal_challenge_header: "O Desafio",
+                modal_solution_header: "A Solução",
+                modal_impact_header: "O Impacto",
+                modal_action_btn: "Falar com Especialista",
+                mobile_lang_label: "IDIOMA",
+                toast_success: "Mensagem enviada com sucesso! Entraremos em contato em breve.",
+                toast_error: "Por favor, preencha todos os campos obrigatórios."
+            },
+            en: {
+                nav_process: "Process",
+                nav_services: "Services",
+                nav_portfolio: "Portfolio",
+                nav_about: "About Us",
+                nav_contact: "Contact",
+                btn_quote: "Request Quote",
+                hero_subtitle: "Architecting the Future",
+                hero_title: 'NextSharp: We transform challenges into tailored <span class="text-primary">digital solutions</span>.',
+                hero_desc: "We develop highly scalable custom systems to elevate your digital presence through cutting-edge technology and resilient software architecture.",
+                btn_start_project: "Start Project",
+                btn_view_portfolio: "View Portfolio",
+                process_title: "From Idea to Final Product",
+                process_step1_title: "Idea Alignment",
+                process_step1_desc: "Complete immersion in your business to understand challenges, goals, and the intended digital ecosystem.",
+                process_step2_title: "Validation",
+                process_step2_desc: "Creation of prototypes and proofs of concept (PoC) to ensure the solution meets actual needs.",
+                process_step3_title: "Development",
+                process_step3_desc: "Clean coding using modern stacks and agile practices for continuous value delivery.",
+                process_step4_title: "System Testing",
+                process_step4_desc: "Rigorous QA with automated and stress testing to ensure stability and performance.",
+                process_step5_title: "Delivery",
+                process_step5_desc: "Deployment of the product in the production environment with full transparency and initial support.",
+                process_step6_title: "Implementation",
+                process_step6_desc: "Training, integration with legacy systems, and active post-launch monitoring.",
+                why_title: "Why trust NextSharp?",
+                why_desc: "We combine technical rigor with a strategic business vision to deliver more than software: we deliver competitive advantage.",
+                why_card1_title: "Tailored Solutions",
+                why_card1_desc: "Software designed for your unique business rules.",
+                why_card2_title: "Real Partnership",
+                why_card2_desc: "We act as a technological extension of your company.",
+                why_card3_title: "High Technical Quality",
+                why_card3_desc: "Clean, secure, and future-proof code.",
+                why_card4_title: "Agility",
+                why_card4_desc: "Agile methodologies for fast and constant deliveries.",
+                solutions_title: "Our Solutions",
+                solutions_desc: "Specialized technology for each stage of your growth.",
+                solutions_card1_title: "Custom Systems",
+                solutions_card1_desc: "ERPs, CRMs, and internal platforms developed from scratch to meet specific demands.",
+                solutions_card2_title: "SaaS & Cloud",
+                solutions_card2_desc: "Creation of scalable digital products in the cloud with resilient infrastructure.",
+                solutions_card3_title: "Consulting",
+                solutions_card3_desc: "Deep technical analysis for legacy systems modernization and technology selection.",
+                solutions_card4_title: "Sites & Landing Pages",
+                solutions_card4_desc: "High-impact digital presence focused on conversion and extreme speed.",
+                solutions_need_title: "Need something else?",
+                solutions_need_desc: "Our team is ready to architect any digital challenge.",
+                solutions_need_btn: "Talk to a Consultant",
+                portfolio_title: "Impact Projects",
+                portfolio_case_details: "View case details",
+                portfolio_case1_tag: "Inventory Management",
+                portfolio_case1_desc: '<strong class="text-on-surface">Challenge:</strong> Centralize control of multiple warehouses with real-time updates.<br /><strong class="text-on-surface">Solution:</strong> Robust administrative panel with smart dashboards and quote integration.<br /><strong class="text-on-surface">Impact:</strong> 30% optimization in replenishment speed and absolute asset control.',
+                portfolio_case2_tag: "Automotive",
+                portfolio_case2_desc: '<strong class="text-on-surface">Challenge:</strong> Revolutionize used vehicle sales with transparency and technology.<br /><strong class="text-on-surface">Solution:</strong> High-performance marketplace with advanced filters and integrated checkout.<br /><strong class="text-on-surface">Impact:</strong> Project in strategic roadmap for imminent launch.',
+                portfolio_case3_tag: "High-Performance Law",
+                portfolio_case3_desc: '<strong class="text-on-surface">Challenge:</strong> Automate the tracking of lawsuits in different Brazilian courts.<br /><strong class="text-on-surface">Solution:</strong> Intelligent crawler for data extraction and automated filing workflow.<br /><strong class="text-on-surface">Impact:</strong> 40% increase in productivity and complete safety of data.',
+                dna_title: "Our DNA",
+                dna_desc: "More than developers, we are architects of solutions focused on real results.",
+                dna_mission: "Mission",
+                dna_mission_desc: "Empower companies to reach their full potential through innovative, scalable, and high-quality technology.",
+                dna_vision: "Vision",
+                dna_vision_desc: "Be a global reference in custom software development, recognized for excellence in architecture.",
+                dna_values: "Values",
+                dna_values_1: "Radical Transparency",
+                dna_values_2: "Continuous Innovation",
+                dna_values_3: "Focus on Results",
+                dna_values_4: "Uncompromising Quality",
+                contact_title: "Ready for the next level?",
+                contact_desc: "Schedule a strategic meeting with our specialists and discover how NextSharp can transform your challenges into high-value digital assets.",
+                contact_label_name: "NAME",
+                contact_label_email: "E-MAIL",
+                contact_label_message: "MESSAGE",
+                contact_placeholder_name: "Your name",
+                contact_placeholder_email: "your@email.com",
+                contact_placeholder_message: "How can we help?",
+                contact_btn_send: "Send Message",
+                footer_rights: "© 2025 NextSharp. All rights reserved.",
+                modal_challenge_header: "Challenge",
+                modal_solution_header: "Solution",
+                modal_impact_header: "Impact",
+                modal_action_btn: "Talk to a Specialist",
+                mobile_lang_label: "LANGUAGE",
+                toast_success: "Message sent successfully! We will contact you soon.",
+                toast_error: "Please fill in all required fields."
+            },
+            es: {
+                nav_process: "Proceso",
+                nav_services: "Servicios",
+                nav_portfolio: "Portafolio",
+                nav_about: "Sobre Nosotros",
+                nav_contact: "Contacto",
+                btn_quote: "Solicitar Presupuesto",
+                hero_subtitle: "Diseñando el Futuro",
+                hero_title: 'NextSharp: Transformamos desafíos en <span class="text-primary">soluciones digitales</span> a medida.',
+                hero_desc: "Desarrollamos sistemas personalizados de alta escalabilidad para elevar su presencia digital al siguiente nivel mediante tecnología de punta y arquitectura de software resiliente.",
+                btn_start_project: "Iniciar Proyecto",
+                btn_view_portfolio: "Ver Portafolio",
+                process_title: "De la Idea al Producto Final",
+                process_step1_title: "Alineación de ideas",
+                process_step1_desc: "Inmersión completa en su negocio para entender desafíos, objetivos y el ecosistema digital pretendido.",
+                process_step2_title: "Validación",
+                process_step2_desc: "Creación de prototipos y pruebas de concepto (PoC) para garantizar que la solución satisfaga las necesidades reales.",
+                process_step3_title: "Desarrollo",
+                process_step3_desc: "Código limpio utilizando tecnologías modernas y prácticas ágiles para una entrega de valor continua.",
+                process_step4_title: "Pruebas del Sistema",
+                process_step4_desc: "Control de calidad riguroso con pruebas automatizadas y de estrés para garantizar estabilidad y rendimiento.",
+                process_step5_title: "Entrega",
+                process_step5_desc: "Lanzamiento del producto en el entorno de producción con total transparencia y soporte inicial.",
+                process_step6_title: "Implementación",
+                process_step6_desc: "Capacitación, integración con sistemas heredados y monitoreo activo posterior al lanzamiento.",
+                why_title: "¿Por qué confiar en NextSharp?",
+                why_desc: "Unimos el rigor técnico con una visión comercial estratégica para ofrecer más que software: ofrecemos ventaja competitiva.",
+                why_card1_title: "Soluciones a medida",
+                why_card1_desc: "Software diseñado para sus reglas de negocio exclusivas.",
+                why_card2_title: "Socio Real",
+                why_card2_desc: "Actuamos como una extensión tecnológica de su empresa.",
+                why_card3_title: "Alta qualidade técnica",
+                why_card3_desc: "Código limpo, seguro y preparado para el futuro.",
+                why_card4_title: "Agilidad",
+                why_card4_desc: "Metodologías ágiles para entregas rápidas y constantes.",
+                solutions_title: "Nuestras Soluciones",
+                solutions_desc: "Tecnología especializada para cada etapa de su crecimiento.",
+                solutions_card1_title: "Sistemas personalizados",
+                solutions_card1_desc: "ERPs, CRMs y plataformas internas desarrolladas desde cero para satisfacer demandas específicas.",
+                solutions_card2_title: "SaaS & Cloud",
+                solutions_card2_desc: "Creación de productos digitales escalables en la nube con infraestructura resiliente.",
+                solutions_card3_title: "Consultoría",
+                solutions_card3_desc: "Análisis técnico profundo para la modernización de sistemas heredados y elección de tecnologías.",
+                solutions_card4_title: "Sitios y Landing Pages",
+                solutions_card4_desc: "Presencia digital de alto impacto enfocada en la conversión y velocidad extrema.",
+                solutions_need_title: "¿Necesita algo diferente?",
+                solutions_need_desc: "Nuestro equipo está listo para diseñar cualquier desafío digital.",
+                solutions_need_btn: "Hablar con un Consultor",
+                portfolio_title: "Proyectos de Impacto",
+                portfolio_case_details: "Ver detalles del caso",
+                portfolio_case1_tag: "Gestión de Inventario",
+                portfolio_case1_desc: '<strong class="text-on-surface">Desafío:</strong> Centralizar el control de múltiples almacenes con actualización en tiempo real.<br /><strong class="text-on-surface">Solución:</strong> Panel administrativo robusto con tableros inteligentes e integración de cotizaciones.<br /><strong class="text-on-surface">Impacto:</strong> Optimización del 30% en la velocidad de reposición y control absoluto de activos.',
+                portfolio_case2_tag: "Automoción",
+                portfolio_case2_desc: '<strong class="text-on-surface">Desafío:</strong> Revolucionar la venta de vehículos usados con transparencia y tecnología.<br /><strong class="text-on-surface">Solución:</strong> Mercado de alto rendimiento con filtros avanzados y pago integrado.<br /><strong class="text-on-surface">Impacto:</strong> Proyecto en hoja de ruta estratégica para lanzamiento inminente.',
+                portfolio_case3_tag: "Derecho de Alto Rendimiento",
+                portfolio_case3_desc: '<strong class="text-on-surface">Desafío:</strong> Automatizar el seguimiento de demandas judiciales en diferentes tribunales brasileños.<br /><strong class="text-on-surface">Solución:</strong> Rastreador inteligente para extracción de datos y flujo de presentación automatizado.<br /><strong class="text-on-surface">Impacto:</strong> 40% de aumento en la productividad y seguridad total de datos confidenciales.',
+                dna_title: "Nuestro ADN",
+                dna_desc: "Más que desarrolladores, somos arquitectos de soluciones enfocadas en resultados reales.",
+                dna_mission: "Misión",
+                dna_mission_desc: "Empoderar a las empresas para que alcancen su máximo potencial a través de tecnología innovadora, escalable y de alta calidad técnica.",
+                dna_vision: "Visión",
+                dna_vision_desc: "Ser un referente global en el desarrollo de software personalizado, reconocido por la excelencia en la arquitectura.",
+                dna_values: "Valores",
+                dna_values_1: "Transparencia Radical",
+                dna_values_2: "Innovación Continua",
+                dna_values_3: "Enfoque en Resultados",
+                dna_values_4: "Calidad Innegociable",
+                contact_title: "¿Listo para el siguiente nivel?",
+                contact_desc: "Programe una reunión estratégica con nuestros especialistas y descubra cómo NextSharp puede transformar sus desafíos en activos digitales de alto valor.",
+                contact_label_name: "NOMBRE",
+                contact_label_email: "CORREO ELECTRÓNICO",
+                contact_label_message: "MENSAJE",
+                contact_placeholder_name: "Su nombre",
+                contact_placeholder_email: "su@correo.com",
+                contact_placeholder_message: "¿Cómo podemos ayudar?",
+                contact_btn_send: "Enviar Mensaje",
+                footer_rights: "© 2025 NextSharp. Todos los derechos reservados.",
+                modal_challenge_header: "El Desafío",
+                modal_solution_header: "La Solución",
+                modal_impact_header: "El Impacto",
+                modal_action_btn: "Hablar con Especialista",
+                mobile_lang_label: "IDIOMA",
+                toast_success: "¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.",
+                toast_error: "Por favor, complete todos los campos obligatorios."
+            },
+            fr: {
+                nav_process: "Processus",
+                nav_services: "Services",
+                nav_portfolio: "Portfolio",
+                nav_about: "À Propos",
+                nav_contact: "Contact",
+                btn_quote: "Demander Devis",
+                hero_subtitle: "Architecturer l'Avenir",
+                hero_title: 'NextSharp: Nous transformons les défis en <span class="text-primary">solutions numériques</span> sur mesure.',
+                hero_desc: "Nous développons des systèmes personnalisés hautement évolutifs pour élever votre présence numérique au niveau supérieur grâce à des technologies de pointe et une architecture logicielle résiliente.",
+                btn_start_project: "Démarrer le Projet",
+                btn_view_portfolio: "Voir le Portfolio",
+                process_title: "De l'Idée au Produit Final",
+                process_step1_title: "Alignement des Idées",
+                process_step1_desc: "Immersion complète dans votre entreprise pour comprendre les défis, les objectifs et l'écosystème numérique souhaité.",
+                process_step2_title: "Validation",
+                process_step2_desc: "Création de prototypes et de preuves de concept (PoC) pour s'assurer que la solution répond aux besoins réels.",
+                process_step3_title: "Développement",
+                process_step3_desc: "Codage propre à l'aide de technologies modernes et de pratiques agiles pour une livraison de valeur continue.",
+                process_step4_title: "Tests du Système",
+                process_step4_desc: "Assurance qualité rigoureuse avec des tests automatisés et de stress pour garantir la stabilité et la performance.",
+                process_step5_title: "Livraison",
+                process_step5_desc: "Déploiement du produit dans l'environnement de production en toute transparence et avec un support initial.",
+                process_step6_title: "Mise en Œuvre",
+                process_step6_desc: "Formation, intégration avec les systèmes existants et surveillance active après le lancement.",
+                why_title: "Pourquoi faire confiance à NextSharp ?",
+                why_desc: "Nous associons la rigueur technique à une vision stratégique de l'entreprise pour offrir plus qu'un logiciel : nous offrons un avantage concurrentiel.",
+                why_card1_title: "Solutions sur Mesure",
+                why_card1_desc: "Logiciel conçu pour vos règles commerciales uniques.",
+                why_card2_title: "Véritable Partenariat",
+                why_card2_desc: "Nous agissons comme un bras technologique de votre entreprise.",
+                why_card3_title: "Haute Qualité Technique",
+                why_card3_desc: "Code propre, sécurisé et prêt pour l'avenir.",
+                why_card4_title: "Agilité",
+                why_card4_desc: "Méthodologies agiles pour des livraisons rapides et constantes.",
+                solutions_title: "Nos Solutions",
+                solutions_desc: "Technologie spécialisée pour chaque étape de votre croissance.",
+                solutions_card1_title: "Systèmes personnalisés",
+                solutions_card1_desc: "ERP, CRM et plateformes internes développés à partir de zéro pour répondre à des demandes spécifiques.",
+                solutions_card2_title: "SaaS & Cloud",
+                solutions_card2_desc: "Création de produits numériques évolutifs dans le cloud avec une infrastructure résiliente.",
+                solutions_card3_title: "Conseil",
+                solutions_card3_desc: "Analyse technique approfondie pour la modernisation des systèmes existants et le choix des technologies.",
+                solutions_card4_title: "Sites & Landing Pages",
+                solutions_card4_desc: "Présence numérique à fort impact axée sur la conversion et une vitesse extrême.",
+                solutions_need_title: "Besoin d'autre chose ?",
+                solutions_need_desc: "Notre équipe est prête à concevoir n'importe quel défi numérique.",
+                solutions_need_btn: "Parler à un Conseiller",
+                portfolio_title: "Projets d'Impact",
+                portfolio_case_details: "Voir les détails du cas",
+                portfolio_case1_tag: "Gestion des Stocks",
+                portfolio_case1_desc: '<strong class="text-on-surface">Défi:</strong> Centraliser le contrôle de plusieurs entrepôts avec des mises à jour en temps réel.<br /><strong class="text-on-surface">Solution:</strong> Tableau de bord administratif robuste avec des graphiques intelligents et intégration des devis.<br /><strong class="text-on-surface">Impact:</strong> Optimisation de 30% de la vitesse de réapprovisionnement et contrôle absolu des actifs.',
+                portfolio_case2_tag: "Automobile",
+                portfolio_case2_desc: '<strong class="text-on-surface">Défi:</strong> Révolutionner la vente de véhicules d\'occasion avec transparence et technologie.<br /><strong class="text-on-surface">Solution:</strong> Marché de haute performance avec filtres avancés et paiement intégré.<br /><strong class="text-on-surface">Impact:</strong> Projet dans la feuille de route stratégique pour un lancement imminent.',
+                portfolio_case3_tag: "Droit à Haute Performance",
+                portfolio_case3_desc: '<strong class="text-on-surface">Défi:</strong> Automatiser le suivi des affaires judiciaires dans différents tribunaux brésiliens.<br /><strong class="text-on-surface">Solution:</strong> Robot intelligent pour l\'extraction de données et flux de dépôt automatisé.<br /><strong class="text-on-surface">Impact:</strong> Augmentation de 40% de la productivité et sécurité totale des données sensibles.',
+                dna_title: "Notre ADN",
+                dna_desc: "Plus que des développeurs, nous sommes des architectes de solutions axées sur des résultats réels.",
+                dna_mission: "Mission",
+                dna_mission_desc: "Donner aux entreprises les moyens d'atteindre leur plein potentiel grâce à une technologie innovante, évolutive et de haute qualité technique.",
+                dna_vision: "Vision",
+                dna_vision_desc: "Être une référence mondiale dans le développement de logiciels personnalisés, reconnue pour l'excellence de son architecture.",
+                dna_values: "Valeurs",
+                dna_values_1: "Transparence Radicale",
+                dna_values_2: "Innovation Continue",
+                dna_values_3: "Focalisation sur Résultats",
+                dna_values_4: "Qualité Inestimable",
+                contact_title: "Prêt pour le niveau supérieur ?",
+                contact_desc: "Planifiez une réunion stratégique avec nos experts et découvrez comment NextSharp peut transformer vos défis en actifs numériques de haute valeur.",
+                contact_label_name: "NOM",
+                contact_label_email: "E-MAIL",
+                contact_label_message: "MESSAGE",
+                contact_placeholder_name: "Votre nom",
+                contact_placeholder_email: "votre@email.com",
+                contact_placeholder_message: "Comment pouvons-nous vous aider ?",
+                contact_btn_send: "Envoyer Message",
+                footer_rights: "© 2025 NextSharp. Tous droits réservés.",
+                modal_challenge_header: "Le Défi",
+                modal_solution_header: "La Solution",
+                modal_impact_header: "L'Impact",
+                modal_action_btn: "Parler à un Spécialiste",
+                mobile_lang_label: "LANGUE",
+                toast_success: "Message envoyé avec succès ! Nous vous contacterons bientôt.",
+                toast_error: "Veuillez remplir tous les champs obligatoires."
+            }
+        };
+
+        const caseTranslations = {
+            pt: {
+                stock: {
+                    title: "NextSharp Stock",
+                    tag: "Gestão de Estoque",
+                    desafio: "Controlar e centralizar com precisão o fluxo de inventário, entradas, saídas, níveis críticos de reabastecimento e cotações financeiras em múltiplos depósitos.",
+                    solucao: "Desenvolvimento de uma plataforma integrada para gestão operacional, incluindo relatórios dinâmicos, alertas automatizados baseados em inteligência preditiva para estoque mínimo, painel de ordens de serviço e conciliação financeira automatizada.",
+                    impacto: "Redução imediata de 30% nos gargalos de suprimentos, eliminação completa de erros em cotações manuais e visibilidade operacional de 100% dos ativos em tempo real."
+                },
+                autoconecta: {
+                    title: "AutoConecta",
+                    tag: "Automotivo",
+                    desafio: "Revolucionar a venda de veículos seminovos com transparência e tecnologia.",
+                    solucao: "Marketplace de alta performance com filtros avançados e checkout integrado.",
+                    impacto: "Projeto em roadmap estratégico para lançamento iminente."
+                },
+                legaltrack: {
+                    title: "LegalTrack Enterprise",
+                    tag: "Advocacia de Alta Performance",
+                    desafio: "Mapear diariamente centenas de diários oficiais e plataformas de tribunais de justiça para rastrear atualizações em processos ativos, evitando perda de prazos cruciais.",
+                    solucao: "Criação de um robô/crawler inteligente rodando de forma distribuída para monitoramento de instâncias jurídicas, integrado com processamento de linguagem natural (PLN) para analisar decisões e gerar rascunhos de petições.",
+                    impacto: "Produtividade jurídica elevada em 40%, eliminação completa da perda de prazos de trânsito em julgado e máxima confidencialidade no tratamento de informações de processos judiciais sigilosos."
+                }
+            },
+            en: {
+                stock: {
+                    title: "NextSharp Stock",
+                    tag: "Inventory Management",
+                    desafio: "Accurately control and centralize the flow of inventory, entries, exits, critical replenishment levels, and financial quotes across multiple warehouses.",
+                    solucao: "Development of an integrated operational management platform, including dynamic reports, automated alerts based on predictive intelligence for minimum stock, service orders panel, and automated financial reconciliation.",
+                    impacto: "Immediate 30% reduction in supply bottlenecks, complete elimination of manual quoting errors, and 100% real-time operational visibility of assets."
+                },
+                autoconecta: {
+                    title: "AutoConecta",
+                    tag: "Automotive",
+                    desafio: "Revolutionize the sale of used vehicles with transparency and technology.",
+                    solucao: "High-performance marketplace with advanced filters and integrated checkout.",
+                    impacto: "Project in strategic roadmap for imminent launch."
+                },
+                legaltrack: {
+                    title: "LegalTrack Enterprise",
+                    tag: "High-Performance Law",
+                    desafio: "Daily mapping of hundreds of official gazettes and court platforms to track updates in active lawsuits, preventing the loss of crucial deadlines.",
+                    solucao: "Creation of an intelligent robot/crawler running in a distributed manner for monitoring legal instances, integrated with natural language processing (NLP) to analyze decisions and generate draft petitions.",
+                    impacto: "Legal productivity increased by 40%, complete elimination of missed deadlines, and maximum confidentiality in handling sensitive legal lawsuit data."
+                }
+            },
+            es: {
+                stock: {
+                    title: "NextSharp Stock",
+                    tag: "Gestión de Inventario",
+                    desafio: "Controlar y centralizar con precisión el fluxo de inventario, entradas, salidas, niveles críticos de reabastecimiento y cotizaciones financieras en múltiples depósitos.",
+                    solucao: "Desarrollo de una plataforma de gestión operativa integrada, que incluye informes dinámicos, alertas automatizadas basadas en inteligencia predictiva para stock mínimo, panel de órdenes de servicio y conciliación financiera automatizada.",
+                    impacto: "Reducción inmediata del 30% en los cuellos de botella de suministro, eliminación completa de errores en cotizaciones manuales y 100% de visibilidad operativa de activos en tiempo real."
+                },
+                autoconecta: {
+                    title: "AutoConecta",
+                    tag: "Automoción",
+                    desafio: "Revolucionar la venta de vehículos usados con transparencia y tecnología.",
+                    solucao: "Marketplace de alto rendimiento con filtros avanzados y pago integrado.",
+                    impacto: "Proyecto en hoja de ruta estratégica para lanzamiento inminente."
+                },
+                legaltrack: {
+                    title: "LegalTrack Enterprise",
+                    tag: "Derecho de Alto Rendimiento",
+                    desafio: "Mapeo diario de cientos de boletines oficiales y plataformas judiciales para rastrear actualizaciones en demandas activas, evitando la pérdida de plazos cruciales.",
+                    solucao: "Creación de un robot/crawler inteligente que se ejecuta de forma distribuida para el monitoreo de instancias legales, integrado con procesamiento de lenguaje natural (PLN) para analizar decisiones y generar borradores de peticiones.",
+                    impacto: "Productividad legal incrementada en 40%, eliminación total de plazos vencidos y máxima confidencialidad en el manejo de datos confidenciales de demandas judiciales."
+                }
+            },
+            fr: {
+                stock: {
+                    title: "NextSharp Stock",
+                    tag: "Gestion des Stocks",
+                    desafio: "Contrôler et centraliser avec précision le flux des stocks, les entrées, les sorties, les niveaux de réapprovisionnement critiques et les devis financiers dans plusieurs entrepôts.",
+                    solucao: "Développement d'une plateforme de gestion opérationnelle intégrée, comprenant des rapports dynamiques, des alertes automatisées basées sur l'intelligence prédictive pour le stock minimum, un panneau d'ordres de service et un rapprochement financier automatisé.",
+                    impacto: "Réduction immédiate de 30 % des goulets d'étranglement de l'approvisionnement, élimination complète des erreurs de devis manuel et visibilité opérationnelle des actifs à 100 % en temps réel."
+                },
+                autoconecta: {
+                    title: "AutoConecta",
+                    tag: "Automobile",
+                    desafio: "Révolutionner la vente de véhicules d'occasion avec transparence et technologie.",
+                    solucao: "Place de marché performante avec filtres avancés et paiement intégré.",
+                    impacto: "Projet dans la feuille de route stratégique pour un lancement imminent."
+                },
+                legaltrack: {
+                    title: "LegalTrack Enterprise",
+                    tag: "Droit à Haute Performance",
+                    desafio: "Cartographie quotidienne de centaines de journaux officiels et de plateformes judiciaires pour suivre les mises à jour des poursuites en cours, évitant ainsi de manquer des échéances cruciales.",
+                    solucao: "Création d'un robot/crawler intelligent fonctionnant de manière distribuée pour la surveillance des instances juridiques, intégré au traitement automatique du langage naturel (TALN) pour analyser les décisions et générer des projets de requêtes.",
+                    impacto: "Productivité juridique augmentée de 40 %, élimination totale des délais manqués et confidentialité maximale dans le traitement des données sensibles des poursuites judiciaires."
+                }
+            }
+        };
+
+        let currentLang = 'pt';
+
+        function updateMobileLangButtons(lang) {
+            const mobileBtns = document.querySelectorAll('.lang-btn-mobile');
+            mobileBtns.forEach(btn => {
+                btn.classList.remove('text-primary', 'border-primary/40', 'bg-primary/10');
+                btn.classList.add('bg-surface-container-high', 'border-white/5');
+            });
+            const activeBtn = document.getElementById(`lang-btn-mobile-${lang}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-surface-container-high', 'border-white/5');
+                activeBtn.classList.add('text-primary', 'border-primary/40', 'bg-primary/10');
+            }
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+
+            // Update current lang text in selector
+            const currentLangText = document.getElementById('current-lang-text');
+            if (currentLangText) {
+                currentLangText.textContent = lang.toUpperCase();
+            }
+
+            // Update current lang flag image
+            const currentLangFlag = document.getElementById('current-lang-flag');
+            if (currentLangFlag) {
+                const flagCodes = {
+                    pt: 'br',
+                    en: 'us',
+                    es: 'es',
+                    fr: 'fr'
+                };
+                currentLangFlag.src = `https://flagcdn.com/w20/${flagCodes[lang]}.png`;
+                currentLangFlag.alt = lang.toUpperCase();
+            }
+
+            // Update translation for all elements with data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key] !== undefined) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang] && translations[lang][key] !== undefined) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+
+            // Update case buttons data attributes
+            document.querySelectorAll('.case-details-btn').forEach(btn => {
+                const caseKey = btn.getAttribute('data-case-key');
+                if (caseKey && caseTranslations[lang] && caseTranslations[lang][caseKey]) {
+                    const data = caseTranslations[lang][caseKey];
+                    btn.setAttribute('data-title', data.title);
+                    btn.setAttribute('data-tag', data.tag);
+                    btn.setAttribute('data-desafio', data.desafio);
+                    btn.setAttribute('data-solucao', data.solucao);
+                    btn.setAttribute('data-impacto', data.impacto);
+                }
+            });
+
+            // Update mobile buttons active styles
+            updateMobileLangButtons(lang);
+
+            // Store preference
+            localStorage.setItem('preferred-language', lang);
+        }
+
+        // Toast Messages
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `glass-card p-4 rounded-xl border flex items-center gap-3 shadow-2xl transition-all duration-300 translate-y-4 opacity-0 pointer-events-auto max-w-sm ${type === 'success' ? 'border-primary/30 text-white' : 'border-red-500/30 text-white'
+                }`;
+
+            const icon = type === 'success' ? 'check_circle' : 'error';
+            const iconColor = type === 'success' ? 'text-primary' : 'text-red-500';
+
+            toast.innerHTML = `
+                <span class="material-symbols-outlined ${iconColor} text-2xl">${icon}</span>
+                <div class="text-sm font-medium">${message}</div>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-4', 'opacity-0');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 4000);
+        }
+
+        // Contact Form Validation and Toast
+        const contactForm = document.querySelector('form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = contactForm.querySelector('input[data-i18n-placeholder="contact_placeholder_name"]').value.trim();
+                const email = contactForm.querySelector('input[data-i18n-placeholder="contact_placeholder_email"]').value.trim();
+                const message = contactForm.querySelector('textarea[data-i18n-placeholder="contact_placeholder_message"]').value.trim();
+
+                if (!name || !email || !message) {
+                    showToast(translations[currentLang].toast_error, 'error');
+                    return;
+                }
+
+                showToast(translations[currentLang].toast_success);
+                contactForm.reset();
+            });
+        }
+
+        // Case Details Modals Dynamic Rendering
+        const caseModal = document.getElementById('case-modal');
+        const caseModalPanel = document.getElementById('case-modal-panel');
+        const modalClose = document.getElementById('modal-close');
+
+        const modalImage = document.getElementById('modal-image');
+        const modalTag = document.getElementById('modal-tag');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesafio = document.getElementById('modal-desafio');
+        const modalSolucao = document.getElementById('modal-solucao');
+        const modalImpacto = document.getElementById('modal-impacto');
+        const modalActionBtn = document.getElementById('modal-action-btn');
+
+        function openModal(button) {
+            const title = button.getAttribute('data-title');
+            const tag = button.getAttribute('data-tag');
+            const image = button.getAttribute('data-image');
+            const desafio = button.getAttribute('data-desafio');
+            const solucao = button.getAttribute('data-solucao');
+            const impacto = button.getAttribute('data-impacto');
+
+            modalImage.src = image;
+            modalImage.alt = title;
+            modalTag.textContent = tag;
+            modalTitle.textContent = title;
+            modalDesafio.textContent = desafio;
+            modalSolucao.textContent = solucao;
+            modalImpacto.textContent = impacto;
+
+            caseModal.classList.remove('opacity-0', 'pointer-events-none');
+            caseModalPanel.classList.remove('scale-95');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            caseModal.classList.add('opacity-0', 'pointer-events-none');
+            caseModalPanel.classList.add('scale-95');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.case-details-btn').forEach(btn => {
+            btn.addEventListener('click', () => openModal(btn));
+        });
+
+        if (modalClose) modalClose.addEventListener('click', closeModal);
+        if (caseModal) {
+            caseModal.addEventListener('click', (e) => {
+                if (e.target === caseModal) closeModal();
+            });
+        }
+        if (modalActionBtn) {
+            modalActionBtn.addEventListener('click', closeModal);
+        }
+
+        // ScrollSpy & Smooth Scroll Highlights
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        function setActiveLink(activeHref) {
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === activeHref) {
+                    link.className = 'nav-link text-primary font-semibold border-b-2 border-primary pb-1 transition-all duration-300 ease-out';
+                } else {
+                    link.className = 'nav-link text-on-surface-variant hover:text-primary transition-colors';
+                }
+            });
+
+            mobileNavLinks.forEach(link => {
+                if (link.getAttribute('href') === activeHref) {
+                    link.className = 'mobile-nav-link text-primary border-l-2 border-primary pl-4 py-1.5 transition-all duration-300';
+                } else {
+                    link.className = 'mobile-nav-link text-on-surface-variant hover:text-primary pl-4 py-1.5 transition-all duration-300';
+                }
+            });
+        }
+
+        function activeNavLinkOnScroll() {
+            const headerElement = document.querySelector('header');
+            if (!headerElement) return;
+            const headerHeight = headerElement.offsetHeight;
+            const scrollPos = window.scrollY + headerHeight + 150;
+
+            // Highlight contact if at bottom
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+                setActiveLink('#contato');
+                return;
+            }
+
+            // Highlight process as default if near top
+            const processoElement = document.getElementById('processo');
+            if (processoElement && window.scrollY < processoElement.offsetTop - 200) {
+                setActiveLink('#processo');
+                return;
+            }
+
+            sections.forEach(sec => {
+                const top = sec.offsetTop;
+                const height = sec.offsetHeight;
+                const id = sec.getAttribute('id');
+
+                if (scrollPos >= top && scrollPos < top + height) {
+                    setActiveLink(`#${id}`);
+                }
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                // Allow normal opening of external links (e.g. WhatsApp)
+                if (this.getAttribute('target') === '_blank') return;
+
+                e.preventDefault();
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    closeMobileMenu();
+
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Instantly set active styling
+                    setActiveLink(targetId);
+                }
+            });
+        });
+
+        // Initialize active state on load, scroll, and resize
+        window.addEventListener('scroll', activeNavLinkOnScroll);
+        window.addEventListener('load', activeNavLinkOnScroll);
+        window.addEventListener('resize', activeNavLinkOnScroll);
+
+        // Check for preferred language on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-language') || 'pt';
+            changeLanguage(savedLang);
+        });
+    </script>
+</body>
+
+</html>
